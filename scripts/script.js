@@ -8,6 +8,39 @@ const elements = {
 	customStatusText: document.querySelector(".custom-status-text"),
 	customStatusEmoji: document.getElementById("custom-status-emoji"),
 };
+
+/* ===========================
+   1) POPUP NOTIFICATION
+   =========================== */
+document.addEventListener("DOMContentLoaded", () => {
+	const popup = document.querySelector(".popup-container");
+	const closeBtn = document.querySelector(".closeBtn");
+	const linkBtn = document.querySelector(".linkBtn");
+
+	// ✅ Hiện popup khi load trang
+	if (popup) popup.classList.add("show");
+
+	// ✅ Tắt popup
+	if (closeBtn) {
+		closeBtn.addEventListener("click", () => popup.classList.remove("show"));
+	}
+
+	// ✅ Chuyển link ở nút "Muaaaa"
+	if (linkBtn) {
+		linkBtn.addEventListener("click", () => {
+			window.location.href = "https://www.instagram.com/dec09.zunq/";
+		});
+	}
+
+	// ✅ (Tuỳ chọn) bấm nền đen để tắt
+	popup.addEventListener("click", (e) => {
+		if (e.target === popup) popup.classList.remove("show");
+	});
+});
+
+/* ===========================
+   2) DISCORD WEBSOCKET (giữ nguyên)
+   =========================== */
 function startWebSocket() {
 	const ws = new WebSocket("wss://api.lanyard.rest/socket");
 	ws.onopen = () => {
