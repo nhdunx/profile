@@ -703,11 +703,103 @@ a:hover.tooltip::after {
 }
 
 @keyframes fadeIn {
-  0% {
-    opacity: 0
-  }
-
-  100% {
-    opacity: 1
-  }
+  0% { opacity: 0 }
+  100% { opacity: 1 }
 }
+
+/* ===========================
+   POPUP NOTIFICATION (ĐÃ CHÈN)
+   =========================== */
+.popup-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;                 
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, .6);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity .3s ease, visibility .3s ease;
+  z-index: 9999;
+}
+
+/* Bật popup */
+.popup-container.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popupNoti {
+  width: 350px;
+  padding: 18px;
+  background: rgba(233, 243, 251, 1); /* #e9f3fb */
+  border: 1px solid #c7d9eb;          /* viền xanh xám nhẹ */
+  border-radius: 19px;
+  text-align: center;
+  color: #0b0f19;                      /* chữ đen đậm */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transform: scale(.85);
+  transition: transform .25s ease;
+}
+
+/* hiệu ứng phóng mượt khi hiện */
+.popup-container.show .popupNoti {
+  transform: scale(1);
+}
+
+/* Tiêu đề */
+.popupNoti .text { 
+  font-weight: 800; 
+  margin: 4px 0 0; 
+}
+
+/* Mô tả */
+.popupNoti .description {
+  color: #0b0f19 !important;
+  font-size: 14px;
+  line-height: 1.45;
+  margin: 8px 0;
+}
+
+/* Đường kẻ chia ngăn */
+.popupNoti .split {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: #cfdcf2;                 /* xanh nhạt */
+  margin: 10px 0;
+}
+
+/* Nút/ngăn bấm – có “nún xuống” */
+.popupNoti .button {
+  cursor: pointer;
+  display: block;
+  padding: 12px 0;
+  font-size: 16px;
+  color: #0b0f19 !important;           /* chữ đen đậm cho nút */
+  background: #f7faff;                 /* panel sáng */
+  border: 1px solid #c7d9eb;
+  border-radius: 12px;
+  margin: 8px 0;
+  font-weight: 700;
+  box-shadow: 0 4px 0 rgba(0,0,0,.12);
+  transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+}
+
+/* Hover: nún nhẹ và đổi nền */
+.popupNoti .button:hover {
+  background: #eaf2ff;
+  transform: translateY(1px);
+  box-shadow: 0 3px 0 rgba(0,0,0,.12);
+}
+
+/* Active: nún sâu hơn */
+.popupNoti .button:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 rgba(0,0,0,.18) inset, 0 1px 0 rgba(0,0,0,.12);
+}
+
